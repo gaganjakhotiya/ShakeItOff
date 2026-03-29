@@ -4,6 +4,13 @@
 
 ---
 
+## Screenshot
+
+<img width="450" height="1050" alt="image" src="https://github.com/user-attachments/assets/7a95a80b-3840-4e41-bc37-15599963fd66" />
+
+
+---
+
 ## Features
 
 - **Activation toggle** — arm the app, lock your phone, walk away
@@ -39,7 +46,7 @@
 
 2. **Open the project in Xcode**
    ```
-   open ShakeItOff/ShakeItOff/ShakeItOff.xcodeproj
+   open ./ShakeItOff.xcodeproj
    ```
 
 3. **Set your Team**
@@ -92,7 +99,6 @@ To stop: open the app and toggle **Activate** to OFF.
 ## Project Structure
 
 ```
-ShakeItOff/
 ├── ShakeItOff/                        # Xcode workspace root
 │   ├── ShakeItOff.xcodeproj
 │   ├── Info.plist
@@ -111,7 +117,6 @@ ShakeItOff/
 │       ├── Assets.xcassets/
 │       │   └── AppIcon.appiconset/    # 1024×1024 app icon
 │       └── NotificationIcon.png       # Icon shown in pickup notifications
-└── draft.txt                          # Original feature specification
 ```
 
 ---
