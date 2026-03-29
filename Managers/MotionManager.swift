@@ -92,11 +92,36 @@ final class MotionManager {
             guard self?.appState?.isActivated == true else { return }
             self?.startMotionDetection()
         }
+
         NotificationCenter.default.addObserver(
             forName: UIApplication.willResignActiveNotification,
             object: nil, queue: .main
         ) { [weak self] _ in
-            self?.stopMotionDetection()
+            // Best-effort background behavior: keep motion updates running while activated.
+            guard self?.appState?.isActivated == true else {
+                self?.stopMotionDetection()
+                return
+            }
+            self?.startMotionDetection()
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.didEnterBackgroundNotification,
+            object: nil, queue: .main
+        ) { [weak self] _ in
+            guard self?.appState?.isActivated == true else {
+                self?.stopMotionDetection()
+                return
+            }
+            self?.startMotionDetection()
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.willEnterForegroundNotification,
+            object: nil, queue: .main
+        ) { [weak self] _ in
+            guard self?.appState?.isActivated == true else { return }
+            self?.startMotionDetection()
         }
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 import Observation
 
 @Observable
@@ -18,21 +19,19 @@ final class VibrationManager {
 
     // MARK: - Constants
 
-    private let activeUsageMax: TimeInterval = 60.0
     private let throttleInterval: TimeInterval = 2.0
-
-    // MARK: - Dependencies
-
-    private weak var tracker: ScreenInteractionTracker?
 
     // MARK: - Private State
 
     private var lastVibrationTime: Date?
+    private let lightGenerator = UIImpactFeedbackGenerator(style: .light)
+    private let mediumGenerator = UIImpactFeedbackGenerator(style: .medium)
+    private let heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
 
     // MARK: - Init
 
     init(screenInteractionTracker: ScreenInteractionTracker) {
-        self.tracker = screenInteractionTracker
+        prepareGenerators()
     }
 
     // MARK: - Public API
@@ -41,19 +40,6 @@ final class VibrationManager {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
 
-            // Auto-resume if the tracker has gone idle since the last pause.
-            if self.isVibrationPausedForSafety, self.tracker?.isActivelyUsing == false {
-                self.isVibrationPausedForSafety = false
-            }
-
-            // Gate 1: 60-second active-usage safety cap.
-            if let t = self.tracker, t.isActivelyUsing,
-               t.activeUsageDuration >= self.activeUsageMax {
-                self.isVibrationPausedForSafety = true
-                return
-            }
-
-            // Gate 2: 2-second inter-vibration throttle.
             if let lastFired = self.lastVibrationTime,
                Date().timeIntervalSince(lastFired) < self.throttleInterval {
                 return
@@ -74,14 +60,26 @@ final class VibrationManager {
     // MARK: - Haptic
 
     private func fireHaptic(strength: String) {
-        let style: UIImpactFeedbackGenerator.FeedbackStyle
+        let generator: UIImpactFeedbackGenerator
         switch strength {
-        case "low":  style = .light
-        case "high": style = .heavy
-        default:     style = .medium
+        case "low":
+            generator = lightGenerator
+        case "high":
+            generator = heavyGenerator
+        default:
+            generator = mediumGenerator
         }
-        let generator = UIImpactFeedbackGenerator(style: style)
-        generator.prepare()
+
         generator.impactOccurred()
+        generator.prepare()
+
+        // Fallback system vibration for devices/contexts where impact feedback is muted.
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+    }
+
+    private func prepareGenerators() {
+        lightGenerator.prepare()
+        mediumGenerator.prepare()
+        heavyGenerator.prepare()
     }
 }
