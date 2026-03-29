@@ -10,16 +10,19 @@
 		597A48292F794FCB006B46F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48212F794FCB006B46F2 /* ContentView.swift */; };
 		597A482A2F794FCB006B46F2 /* ScreenInteractionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48242F794FCB006B46F2 /* ScreenInteractionTracker.swift */; };
 		597A482B2F794FCB006B46F2 /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48202F794FCB006B46F2 /* BackgroundTaskManager.swift */; };
+		597A48302F794FCB006B46F2 /* BackgroundAudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48312F794FCB006B46F2 /* BackgroundAudioManager.swift */; };
 		597A482C2F794FCB006B46F2 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48232F794FCB006B46F2 /* MotionManager.swift */; };
 		597A482D2F794FCB006B46F2 /* VibrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48262F794FCB006B46F2 /* VibrationManager.swift */; };
 		597A482E2F794FCB006B46F2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A481F2F794FCB006B46F2 /* AppState.swift */; };
 		59AC9B402F794DE400C05869 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59AC9B3F2F794DE400C05869 /* CoreMotion.framework */; };
 		59AC9B422F794DEA00C05869 /* BackgroundTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59AC9B412F794DEA00C05869 /* BackgroundTasks.framework */; };
+		59AC9B432F794DEA00C05869 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59AC9B442F794DEA00C05869 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		597A481F2F794FCB006B46F2 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = Models/AppState.swift; sourceTree = "<group>"; };
 		597A48202F794FCB006B46F2 /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BackgroundTaskManager.swift; path = Managers/BackgroundTaskManager.swift; sourceTree = "<group>"; };
+		597A48312F794FCB006B46F2 /* BackgroundAudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BackgroundAudioManager.swift; path = Managers/BackgroundAudioManager.swift; sourceTree = "<group>"; };
 		597A48212F794FCB006B46F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = Views/ContentView.swift; sourceTree = "<group>"; };
 		597A48222F794FCB006B46F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		597A48232F794FCB006B46F2 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MotionManager.swift; path = Managers/MotionManager.swift; sourceTree = "<group>"; };
@@ -29,6 +32,7 @@
 		59820A212F794C57007E992A /* ShakeItOff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShakeItOff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59AC9B3F2F794DE400C05869 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		59AC9B412F794DEA00C05869 /* BackgroundTasks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackgroundTasks.framework; path = System/Library/Frameworks/BackgroundTasks.framework; sourceTree = SDKROOT; };
+		59AC9B442F794DEA00C05869 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -46,6 +50,7 @@
 			files = (
 				59AC9B402F794DE400C05869 /* CoreMotion.framework in Frameworks */,
 				59AC9B422F794DEA00C05869 /* BackgroundTasks.framework in Frameworks */,
+				59AC9B432F794DEA00C05869 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +67,7 @@
 			children = (
 				597A481F2F794FCB006B46F2 /* AppState.swift */,
 				597A48202F794FCB006B46F2 /* BackgroundTaskManager.swift */,
+				597A48312F794FCB006B46F2 /* BackgroundAudioManager.swift */,
 				597A48212F794FCB006B46F2 /* ContentView.swift */,
 				597A48222F794FCB006B46F2 /* Info.plist */,
 				597A48232F794FCB006B46F2 /* MotionManager.swift */,
@@ -87,6 +93,7 @@
 			children = (
 				59AC9B412F794DEA00C05869 /* BackgroundTasks.framework */,
 				59AC9B3F2F794DE400C05869 /* CoreMotion.framework */,
+				59AC9B442F794DEA00C05869 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,6 +181,7 @@
 				597A48292F794FCB006B46F2 /* ContentView.swift in Sources */,
 				597A482A2F794FCB006B46F2 /* ScreenInteractionTracker.swift in Sources */,
 				597A482B2F794FCB006B46F2 /* BackgroundTaskManager.swift in Sources */,
+				597A48302F794FCB006B46F2 /* BackgroundAudioManager.swift in Sources */,
 				597A482C2F794FCB006B46F2 /* MotionManager.swift in Sources */,
 				597A482D2F794FCB006B46F2 /* VibrationManager.swift in Sources */,
 				597A482E2F794FCB006B46F2 /* AppState.swift in Sources */,

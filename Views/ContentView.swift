@@ -10,10 +10,11 @@ struct ContentView: View {
 
     // MARK: - Environment
 
-    @Environment(AppState.self)              private var appState
+    @Environment(AppState.self)                 private var appState
     @Environment(ScreenInteractionTracker.self) private var tracker
-    @Environment(VibrationManager.self)      private var vibManager
-    @Environment(MotionManager.self)         private var motionMgr
+    @Environment(VibrationManager.self)         private var vibManager
+    @Environment(MotionManager.self)            private var motionMgr
+    @Environment(BackgroundAudioManager.self)   private var bgAudio
 
     // MARK: - Body
 
@@ -142,9 +143,9 @@ struct ContentView: View {
                 .font(.caption).fontWeight(.semibold)
                 .foregroundColor(Color.white.opacity(0.4))
             Text(
-                "When Activate is ON, your phone vibrates every time you pick it up. " +
-                "After 60 seconds of continuous use the vibration pauses automatically — " +
-                "put the phone down for 5+ seconds and it resumes."
+                "When Activate is ON, picking up or moving the phone starts continuous vibrations. " +
+                "They stop when the phone is still for 2+ seconds or the screen locks. " +
+                "After 60 seconds of non-stop use, vibrations pause — put the phone down for 5 s to resume."
             )
             .font(.caption2)
             .foregroundColor(Color.white.opacity(0.3))
@@ -158,17 +159,20 @@ struct ContentView: View {
         Color.white.opacity(0.06)
     }
 
-    /// Custom binding that also starts/stops MotionManager and clears safety-pause.
+    /// Binding that wires the toggle to motion detection + background audio.
     private var activateBinding: Binding<Bool> {
         Binding(
             get: { appState.isActivated },
             set: { newValue in
                 appState.isActivated = newValue
                 if newValue {
-                    motionMgr.startMotionDetection()
+                    bgAudio.start()                    // Keep process alive in background.
+                    motionMgr.startMotionDetection()   // Start sensors + activity monitor.
                 } else {
-                    motionMgr.stopMotionDetection()
+                    motionMgr.stopMotionDetection()    // Stops sensors + vibration.
+                    vibManager.stopContinuousVibration()
                     vibManager.resumeVibrationIfReady()
+                    bgAudio.stop()                     // Release audio session.
                 }
             }
         )
@@ -232,4 +236,5 @@ private struct StrengthButton: View {
         .environment(tracker)
         .environment(vibMgr)
         .environment(motionMgr)
+        .environment(BackgroundAudioManager())
 }

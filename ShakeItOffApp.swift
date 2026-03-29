@@ -1,19 +1,11 @@
 // ShakeItOffApp.swift
 // ShakeItOff
-//
-// App entry point. AppCoordinator owns the full object graph and wires
-// all dependencies before any view renders.
-//
-// All managers are injected via .environment() (the @Observable equivalent
-// of .environmentObject()) so SwiftUI can observe @Observable-tracked reads
-// anywhere in the view hierarchy.
 
 import SwiftUI
+import UserNotifications
 
 // MARK: - AppCoordinator
 
-/// Owns and wires the complete manager graph.
-/// Does not need to be @Observable itself — views observe the individual managers.
 final class AppCoordinator {
 
     let appState:              AppState
@@ -21,6 +13,7 @@ final class AppCoordinator {
     let vibrationManager:      VibrationManager
     let motionManager:         MotionManager
     let backgroundTaskManager: BackgroundTaskManager
+    let backgroundAudio:       BackgroundAudioManager
 
     init() {
         let state   = AppState()
@@ -31,16 +24,19 @@ final class AppCoordinator {
             screenInteractionTracker: tracker,
             appState:                 state
         )
-        let bgMgr = BackgroundTaskManager(appState: state, motionManager: motMgr)
+        let bgMgr   = BackgroundTaskManager(appState: state, motionManager: motMgr)
+        let bgAudio = BackgroundAudioManager()
 
         self.appState                 = state
         self.screenInteractionTracker = tracker
         self.vibrationManager         = vibMgr
         self.motionManager            = motMgr
         self.backgroundTaskManager    = bgMgr
+        self.backgroundAudio          = bgAudio
 
-        // Auto-resume if the app was force-quit with Activate ON.
+        // If Activate was ON when the app was last killed, resume everything.
         if state.isActivated {
+            bgAudio.start()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 motMgr.startMotionDetection()
             }
@@ -62,7 +58,12 @@ struct ShakeItOffApp: App {
                 .environment(coordinator.screenInteractionTracker)
                 .environment(coordinator.vibrationManager)
                 .environment(coordinator.motionManager)
+                .environment(coordinator.backgroundAudio)
                 .preferredColorScheme(.dark)
+                .onAppear {
+                    UNUserNotificationCenter.current()
+                        .requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+                }
         }
     }
 }
