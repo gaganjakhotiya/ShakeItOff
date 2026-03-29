@@ -6,8 +6,29 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		597A48292F794FCB006B46F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48212F794FCB006B46F2 /* ContentView.swift */; };
+		597A482A2F794FCB006B46F2 /* ScreenInteractionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48242F794FCB006B46F2 /* ScreenInteractionTracker.swift */; };
+		597A482B2F794FCB006B46F2 /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48202F794FCB006B46F2 /* BackgroundTaskManager.swift */; };
+		597A482C2F794FCB006B46F2 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48232F794FCB006B46F2 /* MotionManager.swift */; };
+		597A482D2F794FCB006B46F2 /* VibrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A48262F794FCB006B46F2 /* VibrationManager.swift */; };
+		597A482E2F794FCB006B46F2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A481F2F794FCB006B46F2 /* AppState.swift */; };
+		59AC9B402F794DE400C05869 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59AC9B3F2F794DE400C05869 /* CoreMotion.framework */; };
+		59AC9B422F794DEA00C05869 /* BackgroundTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59AC9B412F794DEA00C05869 /* BackgroundTasks.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		597A481F2F794FCB006B46F2 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = Models/AppState.swift; sourceTree = "<group>"; };
+		597A48202F794FCB006B46F2 /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BackgroundTaskManager.swift; path = Managers/BackgroundTaskManager.swift; sourceTree = "<group>"; };
+		597A48212F794FCB006B46F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = Views/ContentView.swift; sourceTree = "<group>"; };
+		597A48222F794FCB006B46F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		597A48232F794FCB006B46F2 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MotionManager.swift; path = Managers/MotionManager.swift; sourceTree = "<group>"; };
+		597A48242F794FCB006B46F2 /* ScreenInteractionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenInteractionTracker.swift; path = Managers/ScreenInteractionTracker.swift; sourceTree = "<group>"; };
+		597A48252F794FCB006B46F2 /* ShakeItOff.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ShakeItOff.xcodeproj; sourceTree = "<group>"; };
+		597A48262F794FCB006B46F2 /* VibrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibrationManager.swift; path = Managers/VibrationManager.swift; sourceTree = "<group>"; };
 		59820A212F794C57007E992A /* ShakeItOff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShakeItOff.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		59AC9B3F2F794DE400C05869 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		59AC9B412F794DEA00C05869 /* BackgroundTasks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackgroundTasks.framework; path = System/Library/Frameworks/BackgroundTasks.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,16 +44,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59AC9B402F794DE400C05869 /* CoreMotion.framework in Frameworks */,
+				59AC9B422F794DEA00C05869 /* BackgroundTasks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		597A48272F794FCB006B46F2 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		59820A182F794C57007E992A = {
 			isa = PBXGroup;
 			children = (
+				597A481F2F794FCB006B46F2 /* AppState.swift */,
+				597A48202F794FCB006B46F2 /* BackgroundTaskManager.swift */,
+				597A48212F794FCB006B46F2 /* ContentView.swift */,
+				597A48222F794FCB006B46F2 /* Info.plist */,
+				597A48232F794FCB006B46F2 /* MotionManager.swift */,
+				597A48242F794FCB006B46F2 /* ScreenInteractionTracker.swift */,
+				597A48252F794FCB006B46F2 /* ShakeItOff.xcodeproj */,
+				597A48262F794FCB006B46F2 /* VibrationManager.swift */,
 				59820A232F794C57007E992A /* ShakeItOff */,
+				59AC9B3E2F794DE300C05869 /* Frameworks */,
 				59820A222F794C57007E992A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +80,15 @@
 				59820A212F794C57007E992A /* ShakeItOff.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		59AC9B3E2F794DE300C05869 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				59AC9B412F794DEA00C05869 /* BackgroundTasks.framework */,
+				59AC9B3F2F794DE400C05869 /* CoreMotion.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,6 +143,12 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 59820A222F794C57007E992A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 597A48272F794FCB006B46F2 /* Products */;
+					ProjectRef = 597A48252F794FCB006B46F2 /* ShakeItOff.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				59820A202F794C57007E992A /* ShakeItOff */,
@@ -119,6 +171,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				597A48292F794FCB006B46F2 /* ContentView.swift in Sources */,
+				597A482A2F794FCB006B46F2 /* ScreenInteractionTracker.swift in Sources */,
+				597A482B2F794FCB006B46F2 /* BackgroundTaskManager.swift in Sources */,
+				597A482C2F794FCB006B46F2 /* MotionManager.swift in Sources */,
+				597A482D2F794FCB006B46F2 /* VibrationManager.swift in Sources */,
+				597A482E2F794FCB006B46F2 /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +309,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QRM6DKN45U;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -271,7 +325,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -282,13 +336,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QRM6DKN45U;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +352,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         Privacy — Motion
+         Required for CMMotionManager / device-motion access.
+         iOS presents this string in the permission alert shown to the user.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <key>NSMotionUsageDescription</key>
+    <string>ShakeItOff uses motion to detect when you pick up your phone so it can vibrate as a reminder to put it back down.</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         Background Execution Modes
+         "fetch"       → BGAppRefreshTask (periodic silent refresh)
+         "processing"  → BGProcessingTask (reserved for future heavy tasks)
+    ═══════════════════════════════════════════════════════════════════ -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>processing</string>
+    </array>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         Background Task Identifiers
+         MUST match the identifier used in BackgroundTaskManager.swift
+         and passed to BGTaskScheduler.shared.register(forTaskWithIdentifier:).
+    ═══════════════════════════════════════════════════════════════════ -->
+    <key>BGTaskSchedulerPermittedIdentifiers</key>
+    <array>
+        <string>com.shakeitoff.motion-refresh</string>
+    </array>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         Interface Orientations
+         Portrait-only on iPhone. The landscape keys are intentionally omitted.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         Minimum OS Version
+         Targets iOS 26 as specified.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <key>MinimumOSVersion</key>
+    <string>26.0</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         Live Activities — not used in this app.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <key>NSSupportsLiveActivities</key>
+    <false/>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         Bundle Identity (fill in via Xcode project settings)
+    ═══════════════════════════════════════════════════════════════════ -->
+    <key>CFBundleName</key>
+    <string>ShakeItOff</string>
+
+    <key>CFBundleDisplayName</key>
+    <string>ShakeItOff</string>
+
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+
+    <key>CFBundleVersion</key>
+    <string>$(CURRENT_PROJECT_VERSION)</string>
+
+    <key>CFBundleShortVersionString</key>
+    <string>$(MARKETING_VERSION)</string>
+
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         App Transport Security — default (HTTPS required).
+         No exceptions needed; this app makes no network requests.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <false/>
+    </dict>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         Launch Screen — solid black to match dark theme.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <key>UILaunchScreen</key>
+    <dict>
+        <key>UIColorName</key>
+        <string>systemBackground</string>
+    </dict>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         Scene Manifest — required for SwiftUI WindowGroup lifecycle.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <false/>
+        <key>UISceneConfigurations</key>
+        <dict/>
+    </dict>
+
+</dict>
+</plist>
